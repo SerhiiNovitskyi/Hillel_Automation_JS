@@ -2,8 +2,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "fs": "^0.0.1-security",
-    "node-fetch": "^3.3.2"
+    "fs": "^0.0.1-security"
   },
   "name": "api-validation",
   "version": "1.0.0",
@@ -13,5 +12,9 @@
   },
   "keywords": [],
   "author": "",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "fs-extra": "^11.1.1",
+    "node-fetch": "^3.3.2"
+  }
 }
