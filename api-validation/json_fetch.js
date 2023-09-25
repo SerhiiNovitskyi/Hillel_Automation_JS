@@ -33,12 +33,19 @@ const dataUser ={
 
 
 async function createUser (data) {
-    const response = await fetch ('https://reqres.in/api/user/register',
- {      method: 'POST',
-        body: JSON.stringify(data),
-        headers: {'Content-Type': 'application/json'}  
-    })
-    const dataR = await response.json()
-    console.log(dataR)
+    try {
+        const response = await fetch ('https://reqres.in/api/user/register',
+        {   method: 'POST',
+            body: JSON.stringify(data),
+            headers: {'Content-Type': 'application/json'}  
+        })
+        const dataRStatusCode = await response.json()
+        const responced = await response.json()
+        console.log(dataRStatusCode)
+        onsole.log(responced)
+        }
+        catch(error){
+            console.log(error)
+        }
   }
  createUser(dataUser)

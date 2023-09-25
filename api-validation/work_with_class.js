@@ -9,7 +9,7 @@ class User {
     get getName() {
         return this.name
     }
-    set name(val) {
+    setName(val) {
         if (val.length <5) {
             console.log ('Please fill onle letters')
             return
