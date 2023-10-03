@@ -8,6 +8,7 @@
   "version": "1.0.0",
   "main": "homework#2.js",
   "scripts": {
+    "cypress:open": "cypress open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,4 +19,5 @@
     "fs-extra": "^11.1.1",
     "node-fetch": "^3.3.2"
   }
+  
 }
