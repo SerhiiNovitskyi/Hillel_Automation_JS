@@ -1,0 +1,26 @@
+{
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  },
+  "name": "api-validation",
+  "version": "1.0.0",
+  "main": "homework#2.js",
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "cypress open",
+    "cy:run_chrome": "cypress run --headless -b chrome --env urlFromCli=$ENV_URL",
+    "cy:run_chrome_headed": "cypress run --headed -b chrome --env urlFromCli=$ENV_URL"
+  },
+  "keywords": [],
+  "author": "",
+  "description": "",
+  "devDependencies": {
+    "cypress": "^13.2.0",
+    "fs-extra": "^11.1.1",
+    "node-fetch": "^3.3.2"
+  }
+  
+}
