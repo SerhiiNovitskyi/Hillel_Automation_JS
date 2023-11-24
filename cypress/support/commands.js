@@ -24,6 +24,45 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('loginAndSetCookie', (url, cookieN, cookieV) => {
-    cy.visit(url)
+    cy.visit(url).timeout(5000)
     cy.setCookie(cookieN, cookieV)
+})
+
+Cypress.Commands.add('loginAndSetLocalStorage', () => {
+    cy.request({
+		method: 'POST',
+		url: 'http://5.189.186.217/api/auth/login',
+		body: {
+			email: 'email@dmytro.com',
+			password: 'abc123',
+		},
+	}).then((response) => {
+		const accessToken = response.body.token;
+		// Store the access token in localstrorage
+		localStorage.setItem('auth-token', accessToken);
+        // store the token in json
+        
+	});
+})
+
+Cypress.Commands.add('createNewCategory', (category) => {
+
+	const accessToken = window.localStorage.getItem('auth-token')
+	
+	cy.request({
+		method: 'POST',
+		url: 'http://5.189.186.217/api/category',
+		body: {
+			name: category,
+
+		},
+		headers: {
+			authorization: accessToken,
+		}
+	}).then((response) => {
+		const categoryId = response.body._id;
+		Cypress.env('categoryId', categoryId)	
+		return response.body
+	})
+
 })
