@@ -31,7 +31,7 @@ Cypress.Commands.add('loginAndSetCookie', (url, cookieN, cookieV) => {
 Cypress.Commands.add('loginAndSetLocalStorage', () => {
     cy.request({
 		method: 'POST',
-		url: 'http://5.189.186.217/api/auth/login',
+		url: '/api/auth/login',
 		body: {
 			email: 'email@dmytro.com',
 			password: 'abc123',
@@ -51,7 +51,7 @@ Cypress.Commands.add('createNewCategory', (category) => {
 	
 	cy.request({
 		method: 'POST',
-		url: 'http://5.189.186.217/api/category',
+		url: '/api/category',
 		body: {
 			name: category,
 
@@ -66,3 +66,61 @@ Cypress.Commands.add('createNewCategory', (category) => {
 	})
 
 })
+
+Cypress.Commands.add('compareCategoryID', () => {
+	const accessToken = window.localStorage.getItem('auth-token');
+	const categoryId = Cypress.env('categoryId');
+
+	cy.request({
+		method: 'GET',
+		url: `/api/category/${Cypress.env('categoryId')}`,
+		headers: {
+			authorization: accessToken,
+		}
+	}).then((response) => {
+		const categorySetId = response.body._id;
+		Cypress.env('categorySetId', categorySetId)	
+		return response.body
+	})
+
+})
+
+Cypress.Commands.add('createProduct', (position) => {
+
+    const accessToken = window.localStorage.getItem('auth-token');
+    const categoryId = Cypress.env('categoryId');
+
+    cy.request ({
+        method: 'POST',
+        url: '/api/position',
+        body: {
+            category: categoryId,
+            cost: 1,
+            name: position
+
+        },
+        headers: {
+            authorization: accessToken,
+        }
+    }).then((response) =>{
+        return response.body
+    })
+})
+
+
+Cypress.Commands.add('removeCategoryId', ()=> {
+    const accessToken = window.localStorage.getItem('auth-token');
+    const categoryId = Cypress.env('categoryId');
+
+    cy.request({
+        method: 'DELETE',
+        url: `/api/category/${categoryId}`,
+        headers: {
+            authorization: `${accessToken}`,
+        }
+    }).then((response) => {
+        expect(response.status).to.eq(200)
+    })
+
+})
+
