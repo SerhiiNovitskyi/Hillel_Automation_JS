@@ -1,7 +1,7 @@
 // const { defineConfig } = require('cypress')
 import { defineConfig } from "cypress";
 import fs from "fs-extra";
-import { configurePlugin } from "cypress-mongodb";
+// import { configurePlugin } from "cypress-mongodb";
 
 export default defineConfig({
   env: {

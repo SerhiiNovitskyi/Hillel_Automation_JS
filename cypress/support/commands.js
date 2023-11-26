@@ -62,6 +62,7 @@ Cypress.Commands.add('createNewCategory', (category) => {
 	}).then((response) => {
 		const categoryId = response.body._id;
 		Cypress.env('categoryId', categoryId)	
+		
 		return response.body
 	})
 

@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
-import { access } from "fs"
+// import { access } from "fs"
+import { faker } from "@faker-js/faker"
 
 
 
@@ -20,13 +21,9 @@ describe('login with api request', () => {
   })
 
   it('Create Category', () => {
-
-    cy.createNewCategory('soap').then((response) => {
-        // Assuming the response contains the created category's ID
-        const categoryId = Cypress.env('categoryId');
-        cy.log(`Created category ID: ${categoryId}`);
-
-      })
+    let categoryName = faker.commerce.product()
+    cy.createNewCategory(categoryName)
+    cy.task('log', categoryName)
     cy.visit('/categories')
     cy.wait(10000)
     cy.get('.content a.collection-item',).should('be.visible')
@@ -71,11 +68,13 @@ describe('login with api request', () => {
 
 
   it('Create Product For Category', () =>{
-      cy.createProduct('strawbery_soap')
-      cy.visit(`/categories/${Cypress.env('categoryId')}`)
-      cy.get('a.collection-item span').eq(0)
+    let productName = faker.commerce.productName()
+    cy.createProduct(productName)
+    cy.task('log', productName)
+    cy.visit(`/categories/${Cypress.env('categoryId')}`)
+    cy.get('a.collection-item span').eq(0)
       .should('be.visible')
-      .contains('strawbery_soap')
+      .contains(productName)
   })
 
   it('Remove Category by ID', () =>{
