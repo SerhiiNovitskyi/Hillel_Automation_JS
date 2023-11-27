@@ -22,7 +22,7 @@ describe('Find data', () => {
             cy.request({
                 method: 'POST',
                 url: 'http://localhost:3000/api/users/authenticate',
-                body: {username:"2134231",password:"123123"},
+                body: {username:"SuperAdmin",password:"Ukraine23"},
             }).then((response) => {
             const authToken = response.body.token
             Cypress.env('authTNext13', authToken)
