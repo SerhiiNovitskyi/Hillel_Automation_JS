@@ -1,7 +1,7 @@
 // const { defineConfig } = require('cypress')
 import { defineConfig } from "cypress";
 import fs from "fs-extra";
-// import { configurePlugin } from "cypress-mongodb";
+import { configurePlugin } from "cypress-mongodb";
 
 export default defineConfig({
   env: {
@@ -22,6 +22,7 @@ export default defineConfig({
       runMode: 1,
   },
   setupNodeEvents(on, config) {
+    
     on('task', {log(message) {console.log(message); return null}})
     on('task', {saveUrl(url) {fs.writeFileSync('url.json', JSON.stringify(url)); return null}})
     // const newUrl = config.env.urlFromCli || 'https://www.guru99.com'
@@ -34,6 +35,18 @@ export default defineConfig({
       }
       return LaunchOptions
     })
+    // configurePlugin(on)
+    // on('before:run', async (details) => {
+    //   console.log('override before:run');
+    //   await beforeRunHook(details);
+    // });
+
+    // on('after:run', async () => {
+    //   console.log('override after:run');
+    //   await afterRunHook();
+    // });
+    configurePlugin(on)
+    
     return config
   },
 },

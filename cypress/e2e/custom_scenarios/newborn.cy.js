@@ -25,7 +25,7 @@ describe('login with api request', () => {
     cy.createNewCategory(categoryName)
     cy.task('log', categoryName)
     cy.visit('/categories')
-    cy.wait(10000)
+    cy.wait(5000)
     cy.get('.content a.collection-item',).should('be.visible')
   })
 

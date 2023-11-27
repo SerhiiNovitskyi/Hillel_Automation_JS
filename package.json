@@ -3,6 +3,7 @@
   "type": "module",
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
+    "cypress-mongodb": "^6.2.0",
     "fs": "^0.0.1-security"
   },
   "name": "api-validation",
@@ -11,8 +12,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open": "cypress open",
-    "cy:run_chrome": "cypress run --headless -b chrome --env urlFromCli=$ENV_URL",
-    "cy:run_chrome_headed": "cypress run --headed -b chrome --env urlFromCli=$ENV_URL"
+    "cy:run_chrome_with_env": "cypress run --headless -b chrome --env urlFromCli=$ENV_URL",
+    "cy:run_chrome_headed_with_env": "cypress run --headed -b chrome --env urlFromCli=$ENV_URL",
+    "cy:run_chrome": "cypress run --headless -b chrome",
+    "cy:run_chrome_headed": "cypress run --headed -b chrome"
   },
   "keywords": [],
   "author": "",
