@@ -1,4 +1,4 @@
-import { users } from "../../cypress/data/dou_data/search_text.js";
+import { users } from "../../data/dou_data/search_text";
 
 // example of parametrized test
 // command for test

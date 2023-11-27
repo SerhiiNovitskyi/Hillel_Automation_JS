@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
-import MainPage from "../../cypress/pages/main";
-import PostmanPage from "../../cypress/pages/postman_page";
-import { global_data } from "../../cypress/data/global_text"
-import { seleniumPage } from "../../cypress/pages/selenium_testing_page";
+import MainPage from "../../pages/main";
+import PostmanPage from "../../pages/postman_page";
+import { global_data } from "../../data/global_text"
+import { seleniumPage } from "../../pages/selenium_testing_page";
 
 describe ('Testing Guru99 Website', () => {
 

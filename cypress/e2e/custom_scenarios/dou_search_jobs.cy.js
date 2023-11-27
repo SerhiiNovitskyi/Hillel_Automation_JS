@@ -1,5 +1,5 @@
-import { jobsPage } from "../../cypress/pages/Dou_Pages/jobsPage.js";
-import { HomePage } from "../../cypress/pages/Dou_Pages/homePage.js"
+import { jobsPage } from "../../pages/Dou_Pages/jobsPage.js";
+import { HomePage } from "../homePage.js"
 
 
 describe('OPen Jobs page and Search QA vecansies', () => {
