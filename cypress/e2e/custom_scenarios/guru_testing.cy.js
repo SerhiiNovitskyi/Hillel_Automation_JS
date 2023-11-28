@@ -5,6 +5,8 @@ import PostmanPage from "../../pages/postman_page";
 import { global_data } from "../../data/global_text"
 import { seleniumPage } from "../../pages/selenium_testing_page";
 
+// Run test command : ENV_URL=http://www.guru99.com npm run cy:run_chrome_headed -- --spec cypress/e2e/custom_scenarios/guru_testing.cy.js
+
 describe ('Testing Guru99 Website', () => {
 
     const mainpage = new MainPage()  
@@ -13,9 +15,9 @@ describe ('Testing Guru99 Website', () => {
     beforeEach(()=> {
         // cy.visit('https://www.guru99.com/');
         // cy.setCookie ('authCoka', 'someCooke')
-        // const BaseUrl1 = Cypress.env('guruTestingUrl')
-        // Cypress.config('baseUrl', BaseUrl1)
-        cy.loginAndSetCookie('/', 'authCoka', 'someCookie')
+        const BaseUrl1 = Cypress.env('guruTestingUrl')
+        Cypress.config('baseUrl', BaseUrl1)
+        cy.loginAndSetCookie(BaseUrl1, 'authCoka', 'someCookie')
     });
 
     it('open the website guru', () => {
