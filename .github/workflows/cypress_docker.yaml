@@ -18,22 +18,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: '20.5.1'
+
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
-          node-version: '20.5.1'
+          build: npm run build
+          start: npm start
+          browser: chrome
+          spec: cypress/e2e/custom_scenarios/newborn.cy.js    
 
-      - name: Build Docker image
-        run: docker build -t my-cypress-tests .
+#      - name: Build Docker image
+#        run: docker build -t my-cypress-tests .
 
-      - name: Run Cypress tests in Docker container
-        run: docker run -it -v $PWD:/e2e -w /e2e cypress/included:13.2.0 npm run cypress -b chrome --env urlFromCli=http://5.189.186.217  --spec cypress/e2e/custom_scenarios/newborn.cy.js  
+#      - name: Run Cypress tests in Docker container
+#        run: docker run -it -v $PWD:/e2e -w /e2e cypress/included:13.2.0 npm run cypress -b chrome --env urlFromCli=http://5.189.186.217  --spec cypress/e2e/custom_scenarios/newborn.cy.js  
 
-#      - name: Install dependencies
- #       run: npm install --force
+      - name: Install dependencies
+        run: npm install --force
 
- #     - name: Run tests
- #       run: npm run cy:run_chrome --spec cypress/e2e/custom_scenarios/newborn.cy.js
+      - name: Run tests
+        run: npm run cy:run_chrome --spec cypress/e2e/custom_scenarios/newborn.cy.js
 
       - name: Save report
         uses: actions/upload-artifact@v3
