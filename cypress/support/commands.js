@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('loginAndSetCookie', (url, cookieN, cookieV) => {
-    cy.visit(url).timeout(5000)
+    cy.visit(url,{ timeout: 5000 })
     cy.setCookie(cookieN, cookieV)
 })
 
