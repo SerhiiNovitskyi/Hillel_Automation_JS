@@ -1,0 +1,50 @@
+name: cypress_docker
+
+on:
+  push:
+    branches:
+      - snovitskyi/github_actions  # або інша гілка за вашим вибором
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    container: 
+      image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+      options: --user 1001
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.5.1'
+
+      - name: Build Docker image
+        run: docker build -t my-cypress-tests .
+
+      - name: Run Cypress tests in Docker container
+        run: docker run -it -v $PWD:/e2e -w /e2e cypress/included:13.2.0 npm run cypress -b chrome --env urlFromCli=http://5.189.186.217  --spec cypress/e2e/custom_scenarios/newborn.cy.js  
+
+#      - name: Install dependencies
+ #       run: npm install --force
+
+ #     - name: Run tests
+ #       run: npm run cy:run_chrome --spec cypress/e2e/custom_scenarios/newborn.cy.js
+
+      - name: Save report
+        uses: actions/upload-artifact@v3
+        with:
+          path: cypress/reports/html
+          name: Main Report
+        if: failure() || success()
+
+      - name: Get report
+        uses: actions/download-artifact@v3
+        with:
+          path: cypress/reports/html
+          name: Main Report
+        if: failure() || success()
