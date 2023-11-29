@@ -29,6 +29,8 @@
         - name: Run Cypress tests
           uses: cypress-io/github_action@v6
           with:
+            build: npm run build
+            start: npm start
             browser: chrome
             spec: cypress/e2e/custom_scenarios/newborn.cy.js              
 
