@@ -1,0 +1,47 @@
+  name: main
+
+  on: 
+    push:
+      branches:
+        - "snovitskyi/github_actions"
+
+  jobs:
+    cypress-run:
+      runs-on: ubuntu-latest
+      container: 
+        image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+        options: --user 1001
+      steps:
+        - name: Checkout project
+          uses: actions/checkout@v4
+
+        - name: Install dependencies
+          run: npm install --force  
+
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
+        - name: Setup Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: '20.5.1'       
+
+        - name: Run Cypress tests
+          uses: cypress-io/github-action@v6
+          with:
+            browser: chrome
+            spec: cypress/e2e/custom_scenarios/newborn.cy.js
+
+        - name: Save report
+          uses: actions/upload-artifact@v3
+          with: 
+            path: cypress/reports/html
+            name: Main report
+          if: failure() || success()
+      
+        - name: Get report
+          uses: actions/download-artifact@v3
+          with:
+            name: Main report
+          if: failure() || success()                
+

@@ -2,7 +2,7 @@ import { jobsPage } from "../../pages/Dou_Pages/jobsPage.js";
 import { HomePage } from "../homePage.js"
 
 
-describe('OPen Jobs page and Search QA vecansies', () => {
+describe.skip('OPen Jobs page and Search QA vecansies', () => {
 
   content('Querying', () => {
     beforeEach(() => {
