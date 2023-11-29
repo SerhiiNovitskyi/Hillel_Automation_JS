@@ -14,6 +14,7 @@ export default defineConfig({
     embeddedScreenshots: true,
     inlineAssets: true,
     saveAllAttempts: false,
+    configFile: "reporter-config.json"
   },
   env: {
     newbornUrl: 'http://5.189.186.217',
