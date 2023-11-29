@@ -27,7 +27,7 @@
             node-version: '20.5.1'       
 
         - name: Run Cypress tests
-          uses: cypress-io/github_action@v6
+          uses: snovitskyi/github_actions@v6
           with:
             build: npm run build
             start: npm start
