@@ -32,16 +32,16 @@
             browser: chrome
             spec: cypress/e2e/custom_scenarios/newborn.cy.js
 
-#        - name: Save report
-#          uses: actions/upload-artifact@v3
-#          with: 
-#            path: cypress/reports/html
-#            name: Main report
-#          if: failure() || success()
+        - name: Save report
+          uses: actions/upload-artifact@v3
+          with: 
+            path: cypress/reports/html
+            name: Main report
+          if: failure() || success()
       
-#        - name: Get report
-#          uses: actions/download-artifact@v3
-#          with:
-#            name: Main report
-#          if: failure() || success()                
+        - name: Get report
+          uses: actions/download-artifact@v3
+          with:
+            name: Main report
+          if: failure() || success()                
 

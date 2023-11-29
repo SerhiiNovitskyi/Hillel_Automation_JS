@@ -7,15 +7,6 @@ import lib from 'cypress-mochawesome-reporter/lib/index.js'
 const { beforeRunHook, afterRunHook } = lib
 
 export default defineConfig({
-  // reporter: 'cypress-mochawesome-reporter',
-  // reporterOptions: {
-  //   charts: true,
-  //   reportPageTitle: 'HTML reports created by AQA wizard',
-  //   embeddedScreenshots: true,
-  //   inlineAssets: true,
-  //   saveAllAttempts: false,
-  //   configFile: "reporter-config.json"
-  // },
   env: {
     newbornUrl: 'http://5.189.186.217',
     guruTestingUrl: 'https://www.guru99.com',
@@ -24,6 +15,14 @@ export default defineConfig({
       uri: 'mongodb://127.0.0.1:27017',
       database: 'test',
     },
+  },
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    charts: true,
+    reportPageTitle: 'HTML reports created by AQA wizard',
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
   },
   e2e: {
     experimentalStudio: true,
@@ -62,5 +61,4 @@ export default defineConfig({
       return config
     },
   },
-})
-/// //sdfgds
+});
