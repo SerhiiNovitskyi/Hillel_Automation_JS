@@ -1,4 +1,4 @@
-  name: cypress_docker
+  name: main
 
   on: 
     push:
@@ -27,25 +27,21 @@
             node-version: '20.5.1'       
 
         - name: Run Cypress tests
-          uses: snovitskyi/github_actions@v6
+          uses: cypress-io/github-action@v6
           with:
-            build: npm run build
-            start: npm start
             browser: chrome
-            spec: cypress/e2e/custom_scenarios/newborn.cy.js              
+            spec: cypress/e2e/custom_scenarios/newborn.cy.js
 
-        - name: Save Cypress HTML report
+        - name: Save report
           uses: actions/upload-artifact@v3
-          with:
-            name: cypress-reports
+          with: 
             path: cypress/reports/html
-          if: always()
-
+            name: Main report
+          if: failure() || success()
+      
         - name: Get report
           uses: actions/download-artifact@v3
           with:
-            path: cypress/reports/html
-            ame: Main Report
-          if: failure() || success()
-  
+            name: Main report
+          if: failure() || success()                
 
